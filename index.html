@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="A minimal web application">
+    <meta name="theme-color" content="#ffffff">
+    
+    <!-- Security meta tags -->
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline';">
+    
+    <!-- Open Graph meta tags for social sharing -->
+    <meta property="og:title" content="Minimal Web App">
+    <meta property="og:description" content="A minimal web application">
+    <meta property="og:type" content="website">
+    
+    <title>Minimal Web App</title>
+
+    <!-- Font -->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300italic,700,700italic">
+    
+    <!-- CSS -->
+    <link rel="stylesheet" href="libs/normalize.css">
+    <link rel="stylesheet" href="libs/milligram.min.css">
+    
+    <!-- JavaScript -->
+    <script defer src="libs/fixi.js"></script>
+    <script defer src="libs/css-scopes.js"></script>
+    
+    <!-- Live Reload (Development Only) -->
+    <script>
+        if (window.location.port === '3000') { // Only connect in development
+            const ws = new WebSocket('ws://localhost:3000/livereload/ws');
+            
+            ws.onopen = () => {
+                console.log('Connected to live reload WebSocket');
+            };
+            
+            ws.onmessage = (event) => {
+                console.log('File change detected, reloading...');
+                window.location.reload();
+            };
+            
+            ws.onerror = (error) => {
+                console.error('WebSocket error:', error);
+            };
+
+            // Attempt to reconnect if connection is lost
+            ws.onclose = () => {
+                console.log('WebSocket closed, attempting to reconnect in 5s...');
+                setTimeout(() => {
+                    window.location.reload();
+                }, 5000);
+            };
+        }
+    </script>
+</head>
+<body>
+    <header class="container">
+        <h1>Minimal Web App</h1>
+    </header>
+    
+    <main class="container">
+        <p>Hello, World!</p>
+    </main>
+</body>
+</html>
