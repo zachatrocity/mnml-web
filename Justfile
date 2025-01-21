@@ -1,7 +1,11 @@
 deps:
     curl -sS https://webi.sh/caddy | sh
     # Install tools for development live reload
-    sudo apt-get update && sudo apt-get install -y socat inotify-tools
+    sudo apt-get update && sudo apt-get install -y inotify-tools
+    # Download pre-built websocat binary
+    curl -L https://github.com/vi/websocat/releases/download/v1.11.0/websocat.x86_64-unknown-linux-musl -o websocat
+    chmod +x websocat
+    sudo mv websocat /usr/local/bin/
 
 # Download external libraries
 libs:

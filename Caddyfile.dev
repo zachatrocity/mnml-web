@@ -3,5 +3,5 @@
     file_server
     
     # Proxy WebSocket connections to our watch script
-    reverse_proxy /livereload/* localhost:3001
+    # reverse_proxy /livereload/* localhost:3001
 }

@@ -31,25 +31,32 @@
     <!-- Live Reload (Development Only) -->
     <script>
         if (window.location.port === '3000') { // Only connect in development
-            const ws = new WebSocket('ws://localhost:3000/livereload/ws');
+            const ws = new WebSocket('ws://localhost:3001');
             
+            console.log('Attempting to connect to WebSocket server...');
             ws.onopen = () => {
-                console.log('Connected to live reload WebSocket');
+                console.log('Successfully connected to live reload WebSocket');
             };
             
             ws.onmessage = (event) => {
-                console.log('File change detected, reloading...');
-                window.location.reload();
+                console.log('Received message:', event.data);
+                if (event.data === 'reload') {
+                    console.log('Reload message received, refreshing page...');
+                    window.location.reload();
+                }
             };
             
             ws.onerror = (error) => {
                 console.error('WebSocket error:', error);
+                console.log('WebSocket readyState:', ws.readyState);
             };
 
             // Attempt to reconnect if connection is lost
             ws.onclose = () => {
-                console.log('WebSocket closed, attempting to reconnect in 5s...');
+                console.log('WebSocket connection closed');
+                console.log('Attempting to reconnect in 5s...');
                 setTimeout(() => {
+                    console.log('Reloading page to reconnect...');
                     window.location.reload();
                 }, 5000);
             };
@@ -58,11 +65,11 @@
 </head>
 <body>
     <header class="container">
-        <h1>Minimal Web App!</h1>
+        <h1>Minimal Web App</h1>
     </header>
     
     <main class="container">
-        <p>Hello, World!</p>
+        <p>Hello, World</p>
     </main>
 </body>
 </html>
