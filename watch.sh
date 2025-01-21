@@ -1,5 +1,11 @@
 #!/bin/bash
 
+# Check if inotifywait is installed
+if ! command -v inotifywait >/dev/null 2>&1; then
+    echo "Error: inotifywait is not installed. Please install inotify-tools package."
+    exit 1
+fi
+
 # Start WebSocket server using socat
 socat TCP-LISTEN:3001,fork,reuseaddr SYSTEM:"echo -e 'HTTP/1.1 101 Web Socket Protocol Handshake\r\nUpgrade: websocket\r\nConnection: Upgrade\r\nSec-WebSocket-Accept: dummy\r\n\r\n'; cat" &
 SOCAT_PID=$!
