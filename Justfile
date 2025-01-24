@@ -1,14 +1,10 @@
-deps:
+# Download web libraries
+libs:
     # Install Caddy server
     curl -sS https://webi.sh/caddy | sh
     # Install tools for development live reload
-    curl -sS https://webi.sh/inotify-tools | sh
-    curl -sS https://webi.sh/websocat | sh
-    # Install fswatch for file monitoring
     curl -sS https://webi.sh/fswatch | sh
-
-# Download external libraries
-libs:
+    # Create directory for libs
     mkdir -p libs
     curl -L "https://cdnjs.cloudflare.com/ajax/libs/milligram/1.4.1/milligram.min.css" -o app/libs/milligram.min.css
     # reset
