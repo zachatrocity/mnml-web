@@ -1,9 +1,11 @@
 deps:
+    # Install Caddy server
     curl -sS https://webi.sh/caddy | sh
     # Install tools for development live reload
-    sudo apt-get update && sudo apt-get install -y inotify-tools
-    # Download pre-built websocat binary
-    go get github.com/jhkennedy4/caddy-hot-watcher
+    curl -sS https://webi.sh/inotify-tools | sh
+    curl -sS https://webi.sh/websocat | sh
+    # Install fswatch for file monitoring
+    curl -sS https://webi.sh/fswatch | sh
 
 # Download external libraries
 libs:
@@ -18,7 +20,10 @@ libs:
 
 # Start development server with live reload
 dev:
-    caddy run --config Caddyfile.dev --adapter caddyfile
+    #!/usr/bin/env bash
+    # Start both servers in parallel
+    caddy run --config Caddyfile.dev --adapter caddyfile & \
+    ./scripts/watch.sh
 
 # Start production server
 prod:

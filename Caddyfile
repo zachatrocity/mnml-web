@@ -1,19 +1,19 @@
 :80 {
-    root * ./app
-    file_server
-    encode gzip
-    
-    # Basic security headers
-    header {
-        # Enable HTTP Strict Transport Security (HSTS)
-        Strict-Transport-Security "max-age=31536000; includeSubDomains"
-        # Prevent browsers from MIME-sniffing
-        X-Content-Type-Options "nosniff"
-        # Enable Cross-site scripting filter
-        X-XSS-Protection "1; mode=block"
-        # Prevent clickjacking
-        X-Frame-Options "DENY"
-        # Control browser features
-        Permissions-Policy "geolocation=(), microphone=(), camera=()"
-    }
+	root * ./app
+	file_server
+	encode gzip
+
+	# Basic security headers
+	header {
+		# Enable HTTP Strict Transport Security (HSTS)
+		Strict-Transport-Security "max-age=31536000; includeSubDomains"
+		# Prevent browsers from MIME-sniffing
+		X-Content-Type-Options "nosniff"
+		# Enable Cross-site scripting filter
+		X-XSS-Protection "1; mode=block"
+		# Prevent clickjacking
+		X-Frame-Options "DENY"
+		# Control browser features
+		Permissions-Policy "geolocation=(), microphone=(), camera=()"
+	}
 }

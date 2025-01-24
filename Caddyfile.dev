@@ -1,7 +1,8 @@
 :3000 {
-    root * .
-    file_server
-    
-    # Proxy WebSocket connections to our watch script
-    # reverse_proxy /livereload/* localhost:3001
+	root * ./app
+	encode gzip
+	file_server
+	
+	# Proxy SSE events to the live reload server
+	reverse_proxy /events localhost:3001
 }

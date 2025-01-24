@@ -8,13 +8,13 @@
     
     <!-- Security meta tags -->
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline';">
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self' https://fonts.googleapis.com https://fonts.gstatic.com; script-src 'self' 'unsafe-inline';">
     
     <!-- Open Graph meta tags for social sharing -->
     <meta property="og:title" content="Minimal Web App">
     <meta property="og:description" content="A minimal web application">
     <meta property="og:type" content="website">
-    
+     
     <title>Minimal Web App</title>
 
     <!-- Font -->
@@ -30,42 +30,18 @@
     
     <!-- Live Reload (Development Only) -->
     <script>
-        if (window.location.port === '3000') { // Only connect in development
-            const ws = new WebSocket('ws://localhost:3001');
-            
-            console.log('Attempting to connect to WebSocket server...');
-            ws.onopen = () => {
-                console.log('Successfully connected to live reload WebSocket');
-            };
-            
-            ws.onmessage = (event) => {
-                console.log('Received message:', event.data);
-                if (event.data === 'reload') {
-                    console.log('Reload message received, refreshing page...');
-                    window.location.reload();
-                }
-            };
-            
-            ws.onerror = (error) => {
-                console.error('WebSocket error:', error);
-                console.log('WebSocket readyState:', ws.readyState);
-            };
-
-            // Attempt to reconnect if connection is lost
-            ws.onclose = () => {
-                console.log('WebSocket connection closed');
-                console.log('Attempting to reconnect in 5s...');
-                setTimeout(() => {
-                    console.log('Reloading page to reconnect...');
-                    window.location.reload();
-                }, 5000);
-            };
-        }
+        const evtSource = new EventSource('/events');
+        evtSource.onmessage = function(event) {
+            if (event.data === 'reload') {
+                window.location.reload();
+            }
+        };
     </script>
+
 </head>
 <body>
     <header class="container">
-        <h1>Minimal Web App</h1>
+        <h1>Minimal Web App!!!</h1>
     </header>
     
     <main class="container">
