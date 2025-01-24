@@ -72,7 +72,7 @@ log "Starting live reload server on port $PORT"
                     echo ""
                 fi
             done
-        } | nc -l 127.0.0.1 "$PORT"
+        } | nc -k -l 127.0.0.1 "$PORT"
     done
 ) &
 

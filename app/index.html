@@ -30,9 +30,11 @@
     
     <!-- Live Reload (Development Only) -->
     <script>
-        const evtSource = new EventSource('/events');
+        evtSource = new EventSource('/events');
+            
         evtSource.onmessage = function(event) {
             if (event.data === 'reload') {
+                evtSource.close();
                 window.location.reload();
             }
         };
@@ -41,7 +43,7 @@
 </head>
 <body>
     <header class="container">
-        <h1>Minimal Web App!!!</h1>
+        <h1>Minimal Web App!</h1>
     </header>
     
     <main class="container">
