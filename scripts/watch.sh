@@ -55,21 +55,19 @@ log "Starting live reload server on port $PORT"
 
 # Start SSE server
 (
-    # Only allow 5 connection attempts per second
     while sleep 0.2; do
         {
-            # Send initial SSE headers
-            echo -e "HTTP/1.1 200 OK\r"
-            echo -e "Content-Type: text/event-stream\r"
-            echo -e "Cache-Control: no-cache\r"
-            echo -e "Connection: keep-alive\r"
-            echo -e "Access-Control-Allow-Origin: *\r\n"
+            # Send initial SSE headers only once
+            printf "HTTP/1.1 200 OK\r\n"
+            printf "Content-Type: text/event-stream\r\n"
+            printf "Cache-Control: no-cache\r\n"
+            printf "Connection: keep-alive\r\n"
+            printf "Access-Control-Allow-Origin: *\r\n\r\n"
             
-            # Keep reading from pipe
+            # Keep reading from pipe and send only event data
             while true; do
                 if read line < "$PIPE"; then
-                    echo "data: $line"
-                    echo ""
+                    printf "data: %s\n\n" "$line"
                 fi
             done
         } | nc -k -l 127.0.0.1 "$PORT"
