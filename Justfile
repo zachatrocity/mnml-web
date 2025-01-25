@@ -22,3 +22,10 @@ dev:
 # Start production server
 prod:
     caddy run --config Caddyfile --adapter caddyfile
+
+# Deploy to cloudflare, fly, whatever
+deploy:
+    npx wrangler pages deploy ./app # cloudflare
+    # flyctl launch # assumes fly.toml setup
+    # npx gh-pages -d ./app # github pages
+    # tar -C app -cvz . & hut pages publish -d username.srht.site site.tar.gz
