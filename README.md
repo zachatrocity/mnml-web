@@ -4,7 +4,7 @@ Minimal web boilerplate without the existential depression.
 
 `just libs` then `just dev`, man.
 
-This is a bare-bones web setup that strives to be minimal. Depends on [fswatch](https://emcrisostomo.github.io/fswatch/) for live reload but thats not required. Assumes go is installed (for caddy).
+This is a bare-bones web setup that strives to be minimal. Depends on [fswatch](https://emcrisostomo.github.io/fswatch/) for live reload. `brew install fswatch` for osx, for linux you know how to install `fswatch`.
 
 Just:
 - Plain HTML/CSS/JS 
