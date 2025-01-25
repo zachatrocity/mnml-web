@@ -2,10 +2,8 @@
 libs:
     # Install Caddy server
     curl -sS https://webi.sh/caddy | sh
-    # Install tools for development live reload
-    curl -sS https://webi.sh/fswatch | sh
     # Create directory for libs
-    mkdir -p libs
+    mkdir -p app/libs
     curl -L "https://cdnjs.cloudflare.com/ajax/libs/milligram/1.4.1/milligram.min.css" -o app/libs/milligram.min.css
     # reset
     curl -L "https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.css" -o app/libs/normalize.css
