@@ -4,7 +4,7 @@ Minimal web boilerplate without the existential depression.
 
 `just libs` then `just dev`, man.
 
-This is a bare-bones web setup strives to minimal. 
+This is a bare-bones web setup that strives to be minimal. 
 
 Just:
 - Plain HTML/CSS/JS 
